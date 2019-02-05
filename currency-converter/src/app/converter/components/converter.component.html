@@ -1,0 +1,61 @@
+<br />
+<div class="alert alert-danger" 
+	role="alert"
+	*ngIf="hasError">
+	Error getting data. Try again.
+</div>
+<div class="panel panel-success">
+	<div class="panel-heading">
+		Choose the currency to convert
+	</div>
+	<div class="panel-body text-center">
+	  <form #conversionForm="ngForm" class="form-inline">
+		<input 
+			type="text" 
+			name="value"
+			class="form-control text-right"
+			placeholder="0" 
+			[(ngModel)]="conversion.value"
+			number
+			required>
+		<select 
+			name="fromCurrency"
+			class="form-control"
+			[(ngModel)]="conversion.fromCurrency"
+			required>
+			<option 
+				*ngFor="let currency of currencys" 
+				[value]="currency.initials">
+				{{ currency.initials }} - {{ currency.description }}
+			</option>
+		</select>
+		<span class="glyphicon glyphicon-arrow-right" 
+			aria-hidden="true"></span>
+		<select
+			name="toCurrency"
+			class="form-control"
+			[(ngModel)]="conversion.toCurrency"
+			required>
+			<option 
+				*ngFor="let currency of currencys" 
+				[value]="currency.initials">
+				{{ currency.initials }} - {{ currency.description }}
+			</option>
+		</select>
+		<input 
+			type="submit" 
+			value="Converter"
+			class="btn btn-success"
+			data-toggle="modal" 
+			data-target="#modalquotation"
+			(click)="converter()"
+			[disabled]="!conversionForm.form.valid">
+	  </form>
+	 </div>
+	 <modal-quotation 
+        [id]="'modalquotation'" 
+        [conversionResponse]="conversionResponse" 
+		[conversion]="conversion" 
+        (onConfirm)="init()">
+    </modal-quotation>
+</div>

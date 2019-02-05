@@ -1,0 +1,50 @@
+<div 
+	class="modal fade" 
+	[id]="id" 
+	tabindex="-1" 
+	role="dialog" 
+	aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button 
+        	type="button" 
+        	class="close" 
+        	data-dismiss="modal" 
+        	aria-label="Fechar">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalLabel">
+        	Quotation in {{ dataquotation | dataBr }}
+        </h4>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+			<h2>
+				{{ conversion.value }} 
+				{{ conversion.fromCurrency }} 
+				= 
+				{{ convertedValue }} 
+				{{ conversion.toCurrency }}
+			</h2>
+			<p>
+				1 {{ conversion.toCurrency }} = 
+				{{ quotationTo }} {{ conversion.fromCurrency }} 
+				/
+				1 {{ conversion.fromCurrency }} = 
+				{{ quotationFrom }} {{ conversion.toCurrency }}
+			</p>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button 
+        	type="button" 
+        	class="btn btn-success"
+        	data-dismiss="modal"
+        	(click)="newConsultation()">
+        	New Consultarion
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
